@@ -129,7 +129,7 @@ namespace mis_221_pa_5_szheng011
         }
         public string ToFile()
         {
-            return $"{listingID}#{listingName}#{listingDateTime}#${costOfSession}#{trainerID}#{trainerFirstName}#{trainerLastName}";
+            return $"{listingID}#{listingName}#{listingDateTime}#{costOfSession}#{trainerID}#{trainerFirstName}#{trainerLastName}";
         }
     }
 }

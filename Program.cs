@@ -19,6 +19,7 @@ ReviewUtility reviewUtility = new ReviewUtility(bookings,trainers,listings,revie
 trainerUtility.GetAllTrainersFromFile(trainers);
 listingUtility.GetAllListingsFromFile(listings);
 bookingUtility.GetAllTransactionsFromFile(bookings);
+reviewUtility.GetAllReviewsFromFile(reviews);
 
 int userInput = -1;
 
@@ -190,11 +191,12 @@ static void RouteToCustomer(ref int customerMenuOpt, ListingUtility listingUtili
     }
     else if(customerMenuOpt == 3){
         Console.Clear();
+        reviewUtility.AddReview();
         
     }
     else if(customerMenuOpt == 4){
         Console.Clear();
-        reviewUtility.AddReview();
+        //reviewUtility.AddReview();
     }
     else{
         Console.Clear();
