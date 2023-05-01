@@ -1,0 +1,116 @@
+Menu:
+1: 
+
+namespace mis_221_pa_5_szheng011
+{
+    public class TrainerUtility
+    {
+        private Trainer[] trainers;
+
+        public TrainerUtility(Trainer[] trainers){
+            this.trainers = trainers;
+        }
+
+        //Adds a trainer to the file: trainer.txt
+        public void AddTrainer(){
+            Trainer newTrainer = new Trainer();
+
+            newTrainer.SetTrainerID(Trainer.GetTrainerIDCount());
+            System.Console.WriteLine("Please enter the name of the trainer:");
+            newTrainer.SetTrainerName(Console.ReadLine());
+            System.Console.WriteLine("Please enter the mailing address of the trainer:");
+            newTrainer.SetTrainerMailingAddress(Console.ReadLine());
+            System.Console.WriteLine("Please enter the email address of the trainer:");
+            newTrainer.SetTrainerEmailAddress(Console.ReadLine());
+
+            trainers[Trainer.GetTrainerIDCount()] = newTrainer; 
+            Trainer.IncTrainerCount();
+            Trainer.IncTrainerIDCount();
+
+            Save();
+        }
+
+        //Updates a trainer's information in the file: trainer.txt
+        public void EditTrainer(){
+            System.Console.WriteLine("Please enter the name of the trainer you would like to edit:");
+            string searchVal = Console.ReadLine();
+            int foundIndex = Search(searchVal);
+
+            if(foundIndex != -1){
+                System.Console.WriteLine("Please enter the name of the trainer:");
+                trainers[foundIndex].SetTrainerName(Console.ReadLine());
+                System.Console.WriteLine("Please enter the mailing address of the trainer:");
+                trainers[foundIndex].SetTrainerMailingAddress(Console.ReadLine());
+                System.Console.WriteLine("Please enter the email address of the trainer:");
+                trainers[foundIndex].SetTrainerEmailAddress(Console.ReadLine());
+
+                Save();
+            }
+            else{
+                System.Console.WriteLine("Trainer was not found :(");
+            }
+        }
+
+        //Deletes a trainer's information from the file: trainer.txt
+        public void DeleteTrainer(){
+            //Trainer newTrainer = new Trainer(-1,"","","");
+
+            System.Console.WriteLine("Please enter the name of the trainer you would like to delete:");
+            string searchVal = Console.ReadLine();
+            int foundIndex = Search(searchVal);
+
+            //StreamWriter outFile = new StreamWriter("trainers.txt");
+
+            if(foundIndex != -1){
+                trainers[foundIndex].SetTrainerName("Deleted");
+                // for(int i = 0; i < foundIndex; i++){
+                //     outFile.WriteLine(trainers[i].ToFile());
+                // }
+                // for(int i = foundIndex+1; i <= Trainer.GetTrainerCount(); i++){   /////////////ID <=
+                //     trainers[foundIndex] = trainers[foundIndex +1];
+                //     //outFile.WriteLine(trainers[i].ToFile());
+                // }
+
+                // for(int i = foundIndex; i < Trainer.GetTrainerCount(); i++){   /////////////ID 
+                //     trainers[i] = trainers[i +1];
+                //     //outFile.WriteLine(trainers[i].ToFile());
+                // }
+                
+                ////////////////trainers[Trainer.GetTrainerCount()] = trainers[] set the last to empty
+
+                Trainer.DecTrainerCount();
+
+                //outFile.Close();
+            }
+            else{
+                System.Console.WriteLine("Trainer was not found :(");
+            }
+
+            Save();
+        }
+
+        //Writes trainer info to the file: trainer.txt
+        private void Save(){
+            StreamWriter outFile = new StreamWriter("trainers.txt");
+
+            for(int i = 0; i < Trainer.GetTrainerIDCount(); i++){   ///////ID <=
+                if(trainers[i].GetTrainerName().CompareTo("Deleted") != 0){
+                    outFile.WriteLine(trainers[i].ToFile());
+                }
+
+            }
+
+            outFile.Close();
+        }
+
+        //Sequential search to find the name of trainer in trainer.txt to edit
+        public int Search(string searchVal){
+            for(int i = 0; i< Trainer.GetTrainerIDCount(); i++){ /////////ID <=
+                if(trainers[i].GetTrainerName().ToUpper() == searchVal.ToUpper()){
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
+}

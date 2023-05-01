@@ -1,0 +1,66 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    "net7.0": []
+  },
+  "packageFolders": {
+    "/Users/hihi/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/mis-221-pa-5-szheng011.csproj",
+      "projectName": "mis-221-pa-5-szheng011",
+      "projectPath": "/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/mis-221-pa-5-szheng011.csproj",
+      "packagesPath": "/Users/hihi/.nuget/packages/",
+      "outputPath": "/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/hihi/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/7.0.100/libexec/sdk/7.0.100/RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

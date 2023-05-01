@@ -1,0 +1,15 @@
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/bin/Debug/net7.0/mis-221-pa-5-szheng011
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/bin/Debug/net7.0/mis-221-pa-5-szheng011.deps.json
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/bin/Debug/net7.0/mis-221-pa-5-szheng011.runtimeconfig.json
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/bin/Debug/net7.0/mis-221-pa-5-szheng011.dll
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/bin/Debug/net7.0/mis-221-pa-5-szheng011.pdb
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/Debug/net7.0/mis-221-pa-5-szheng011.csproj.AssemblyReference.cache
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/Debug/net7.0/mis-221-pa-5-szheng011.GeneratedMSBuildEditorConfig.editorconfig
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/Debug/net7.0/mis-221-pa-5-szheng011.AssemblyInfoInputs.cache
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/Debug/net7.0/mis-221-pa-5-szheng011.AssemblyInfo.cs
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/Debug/net7.0/mis-221-pa-5-szheng011.csproj.CoreCompileInputs.cache
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/Debug/net7.0/mis-221-pa-5-szheng011.dll
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/Debug/net7.0/refint/mis-221-pa-5-szheng011.dll
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/Debug/net7.0/mis-221-pa-5-szheng011.pdb
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/Debug/net7.0/mis-221-pa-5-szheng011.genruntimeconfig.cache
+/Users/hihi/Desktop/mis221/pa5/mis-221-pa-5-szheng011/obj/Debug/net7.0/ref/mis-221-pa-5-szheng011.dll
