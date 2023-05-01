@@ -22,6 +22,14 @@ namespace mis_221_pa_5_szheng011
             this.rating = rating;
         }
 
+        public void SetID(int iD){
+            this.iD = iD;
+        }
+
+        public int GetID(){
+            return iD;
+        }
+
         public void SetListingID(int listingID){
             this.listingID = listingID;
         }

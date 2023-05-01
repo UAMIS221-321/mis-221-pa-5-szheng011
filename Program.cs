@@ -13,6 +13,9 @@ BookingUtility bookingUtility = new BookingUtility(bookings,trainers,listings);
 
 ReportUtility reportUtility = new ReportUtility(bookings,trainers,listings);
 
+Review[] reviews = new Review[1000];
+ReviewUtility reviewUtility = new ReviewUtility(bookings,trainers,listings,reviews);
+
 trainerUtility.GetAllTrainersFromFile(trainers);
 listingUtility.GetAllListingsFromFile(listings);
 bookingUtility.GetAllTransactionsFromFile(bookings);
@@ -22,7 +25,7 @@ int userInput = -1;
 while(userInput != 3){//program keeps going until userInput is 3
     MainMenu();
     if(IsValidOption(ref userInput)){
-        RouteToPortal(ref userInput, trainerUtility, listingUtility, bookingUtility, reportUtility);
+        RouteToPortal(ref userInput, trainerUtility, listingUtility, bookingUtility, reportUtility, reviewUtility);
     }
 }
 return;
@@ -148,7 +151,7 @@ static bool IsValidReportOpt(ref int reportMenuOpt){//returns whether the user e
     }
 }
 
-static void RouteToPortal(ref int userInput, TrainerUtility trainerUtility, ListingUtility listingUtility, BookingUtility bookingUtility, ReportUtility reportUtility)
+static void RouteToPortal(ref int userInput, TrainerUtility trainerUtility, ListingUtility listingUtility, BookingUtility bookingUtility, ReportUtility reportUtility, ReviewUtility reviewUtility)
 {
     if(userInput == 1){
         int customerMenuOpt = -1;
@@ -156,7 +159,7 @@ static void RouteToPortal(ref int userInput, TrainerUtility trainerUtility, List
         while(customerMenuOpt !=5){
             CustomerMenu();
             if(IsValidCustomerOpt(ref customerMenuOpt)){
-                RouteToCustomer(ref customerMenuOpt, listingUtility, bookingUtility);
+                RouteToCustomer(ref customerMenuOpt, listingUtility, bookingUtility, reviewUtility);
             }
         }
     }
@@ -175,7 +178,7 @@ static void RouteToPortal(ref int userInput, TrainerUtility trainerUtility, List
     }
 }
 
-static void RouteToCustomer(ref int customerMenuOpt, ListingUtility listingUtility, BookingUtility bookingUtility)
+static void RouteToCustomer(ref int customerMenuOpt, ListingUtility listingUtility, BookingUtility bookingUtility, ReviewUtility reviewUtility)
 {
     if( customerMenuOpt == 1){
         Console.Clear();
@@ -187,11 +190,11 @@ static void RouteToCustomer(ref int customerMenuOpt, ListingUtility listingUtili
     }
     else if(customerMenuOpt == 3){
         Console.Clear();
-        //Add a review
+        
     }
     else if(customerMenuOpt == 4){
         Console.Clear();
-        //View Customer Report
+        reviewUtility.AddReview();
     }
     else{
         Console.Clear();
