@@ -1,6 +1,10 @@
 ﻿using mis_221_pa_5_szheng011;
 
 //start main//
+StreamReader inFile = new StreamReader("userManual.txt");
+string userManual = inFile.ReadToEnd();
+System.Console.WriteLine(userManual);
+System.Console.WriteLine("\n");
 
 Trainer[] trainers = new Trainer[100];
 TrainerUtility trainerUtility = new TrainerUtility(trainers);
@@ -18,7 +22,7 @@ ReviewUtility reviewUtility = new ReviewUtility(bookings,trainers,listings,revie
 
 trainerUtility.GetAllTrainersFromFile(trainers);
 listingUtility.GetAllListingsFromFile(listings);
-bookingUtility.GetAllTransactionsFromFile(bookings);
+bookingUtility.GetAllTransactionsFromFile(bookings, listings);
 reviewUtility.GetAllReviewsFromFile(reviews);
 
 int userInput = -1;
@@ -37,7 +41,7 @@ static void MainMenu(){
 }
 
 static void CustomerMenu(){
-    System.Console.WriteLine("Please enter:\n1 To Look at the list of available listings\n2 to Book an available listing\n3 to Add a Review for a previous session\n4 to View a Detailed Customer Report\n5 to Go back to Main Menu");
+    System.Console.WriteLine("Please enter:\n1 To Look at the list of available listings\n2 to Book an available listing\n3 to Add a Review for a previous session\n4 to View your Detailed Customer Report\n5 to Go back to Main Menu");
 }
 
 static void OperatorMenu(){
@@ -57,7 +61,7 @@ static void ManageBookingMenu(){
 }
 
 static void RunReportsMenu(){
-    System.Console.WriteLine("Please enter which report you would like to run:\n1 for Individual Customer Session\n2 for Historical Customer Session\n3 for Historical Revenue Report\n4 to Go back to Operator Menu");
+    System.Console.WriteLine("Please enter which report you would like to run:\n1 for Individual Customer Session\n2 for Historical Customer Session\n3 for Historical Revenue Report\n4 for Detailed Customer Report\n5 for Trainer Report\n6 to Go back to Operator Menu");
 }
 
 
@@ -142,7 +146,7 @@ static bool IsValidBookingOpt(ref int bookingMenuOpt){//returns whether the user
 static bool IsValidReportOpt(ref int reportMenuOpt){//returns whether the user entered a valid menu option (1,2,3,4)
     string option = (Console.ReadLine());
 
-    if (option == "1" || option == "2" || option == "3" || option == "4"){
+    if (option == "1" || option == "2" || option == "3" || option == "4" || option == "5" || option == "6"){
         reportMenuOpt = int.Parse(option);
         return true;
     }
@@ -160,7 +164,7 @@ static void RouteToPortal(ref int userInput, TrainerUtility trainerUtility, List
         while(customerMenuOpt !=5){
             CustomerMenu();
             if(IsValidCustomerOpt(ref customerMenuOpt)){
-                RouteToCustomer(ref customerMenuOpt, listingUtility, bookingUtility, reviewUtility);
+                RouteToCustomer(ref customerMenuOpt, listingUtility, bookingUtility, reviewUtility, reportUtility);
             }
         }
     }
@@ -179,7 +183,7 @@ static void RouteToPortal(ref int userInput, TrainerUtility trainerUtility, List
     }
 }
 
-static void RouteToCustomer(ref int customerMenuOpt, ListingUtility listingUtility, BookingUtility bookingUtility, ReviewUtility reviewUtility)
+static void RouteToCustomer(ref int customerMenuOpt, ListingUtility listingUtility, BookingUtility bookingUtility, ReviewUtility reviewUtility, ReportUtility reportUtility)
 {
     if( customerMenuOpt == 1){
         Console.Clear();
@@ -196,7 +200,7 @@ static void RouteToCustomer(ref int customerMenuOpt, ListingUtility listingUtili
     }
     else if(customerMenuOpt == 4){
         Console.Clear();
-        //reviewUtility.AddReview();
+        reportUtility.DetailedCustomerReport();
     }
     else{
         Console.Clear();
@@ -239,7 +243,7 @@ static void RouteToOperator(ref int operatorMenuOpt, TrainerUtility trainerUtili
     else if(operatorMenuOpt == 4){
         int reportOpt = -1;
         Console.Clear();
-        while(reportOpt !=4){
+        while(reportOpt != 6){
             RunReportsMenu();
             if(IsValidReportOpt(ref reportOpt)){
                 RouteToRunReport(ref reportOpt, reportUtility);
@@ -315,7 +319,13 @@ static void RouteToRunReport(ref int manageReportOpt, ReportUtility reportUtilit
     else if(manageReportOpt== 3){
         reportUtility.SortByMonthYear();
         reportUtility.HistRevSessReport();
+    }
+    else if(manageReportOpt== 4){
+        reportUtility.DetailedCustomerReport(); //extra
     }  
+    else if(manageReportOpt== 5){
+        reportUtility.TrainerReport(); //extra
+    }    
     else{
         return;
     }

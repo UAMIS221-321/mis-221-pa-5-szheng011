@@ -1,116 +1,54 @@
-Menu:
-1: 
+*********************************************************************************************************************************
 
-namespace mis_221_pa_5_szheng011
-{
-    public class TrainerUtility
-    {
-        private Trainer[] trainers;
+User Manual:
 
-        public TrainerUtility(Trainer[] trainers){
-            this.trainers = trainers;
-        }
+There are two users roles: Customer and Operator
+Each user will have a different menu that would allow them to do different things
 
-        //Adds a trainer to the file: trainer.txt
-        public void AddTrainer(){
-            Trainer newTrainer = new Trainer();
+For the Customer, they are allowed to:
+1. View the list of available listings
+2. Book an available listing
+3. Add a Review for a session
+4. View their Detailed Customer Report
+5. Go back to Main Menu
 
-            newTrainer.SetTrainerID(Trainer.GetTrainerIDCount());
-            System.Console.WriteLine("Please enter the name of the trainer:");
-            newTrainer.SetTrainerName(Console.ReadLine());
-            System.Console.WriteLine("Please enter the mailing address of the trainer:");
-            newTrainer.SetTrainerMailingAddress(Console.ReadLine());
-            System.Console.WriteLine("Please enter the email address of the trainer:");
-            newTrainer.SetTrainerEmailAddress(Console.ReadLine());
+For the Operator, they are allowed to:
+1. Manage Trainer Data
+    1.Add a Trainer
+    2.Edit a Trainer
+    3.Delete a Trainer
+    4.Go back to Operator Menu
+2. Manage Listing Data
+    1.Add a Listing
+    2.Edit a Listing
+    3.Delete a Listing
+    4.Go back to Operator Menu
+3. Manage Customer Booking Data
+    1. View Available Training Sessions
+    2. Book a Training Session
+    3. Cancel a Customer Appointment
+    4. Mark a Customer Training Session as Complete
+    5. Go back to Operator Menu
+4. Run Reports
+    1. Individual Customer Session
+    2. Historical Customer Session
+    3. Historical Revenue Report
+    4. Detailed Customer Report
+    5. Trainer Report
+    6. to Go back to Operator Menu
+5. Go back to Main Menu
 
-            trainers[Trainer.GetTrainerIDCount()] = newTrainer; 
-            Trainer.IncTrainerCount();
-            Trainer.IncTrainerIDCount();
 
-            Save();
-        }
+The format of the trainers.txt file:
+Trainer ID#First Name#Last Name#Mailing Address#Email Address
 
-        //Updates a trainer's information in the file: trainer.txt
-        public void EditTrainer(){
-            System.Console.WriteLine("Please enter the name of the trainer you would like to edit:");
-            string searchVal = Console.ReadLine();
-            int foundIndex = Search(searchVal);
+The format of the listings.txt file:
+Listing ID#Listing Name#Listing Date Time#Cost of Session#Trainer ID#Trainer First Name#Trainer Last Name
 
-            if(foundIndex != -1){
-                System.Console.WriteLine("Please enter the name of the trainer:");
-                trainers[foundIndex].SetTrainerName(Console.ReadLine());
-                System.Console.WriteLine("Please enter the mailing address of the trainer:");
-                trainers[foundIndex].SetTrainerMailingAddress(Console.ReadLine());
-                System.Console.WriteLine("Please enter the email address of the trainer:");
-                trainers[foundIndex].SetTrainerEmailAddress(Console.ReadLine());
+The format of the transactions.txt file:
+Session ID#Customer First Name#Customer Last Name#Customer Email#Session Date Time#Trainer ID#Trainer First Name#Trainer Last Name#Cost of Session#Session Status
 
-                Save();
-            }
-            else{
-                System.Console.WriteLine("Trainer was not found :(");
-            }
-        }
+The format of the reviews.txt file:
+Review ID#Customer Email#Listing ID#Customer Comment#Customer Rating(on a scale of 10)
 
-        //Deletes a trainer's information from the file: trainer.txt
-        public void DeleteTrainer(){
-            //Trainer newTrainer = new Trainer(-1,"","","");
-
-            System.Console.WriteLine("Please enter the name of the trainer you would like to delete:");
-            string searchVal = Console.ReadLine();
-            int foundIndex = Search(searchVal);
-
-            //StreamWriter outFile = new StreamWriter("trainers.txt");
-
-            if(foundIndex != -1){
-                trainers[foundIndex].SetTrainerName("Deleted");
-                // for(int i = 0; i < foundIndex; i++){
-                //     outFile.WriteLine(trainers[i].ToFile());
-                // }
-                // for(int i = foundIndex+1; i <= Trainer.GetTrainerCount(); i++){   /////////////ID <=
-                //     trainers[foundIndex] = trainers[foundIndex +1];
-                //     //outFile.WriteLine(trainers[i].ToFile());
-                // }
-
-                // for(int i = foundIndex; i < Trainer.GetTrainerCount(); i++){   /////////////ID 
-                //     trainers[i] = trainers[i +1];
-                //     //outFile.WriteLine(trainers[i].ToFile());
-                // }
-                
-                ////////////////trainers[Trainer.GetTrainerCount()] = trainers[] set the last to empty
-
-                Trainer.DecTrainerCount();
-
-                //outFile.Close();
-            }
-            else{
-                System.Console.WriteLine("Trainer was not found :(");
-            }
-
-            Save();
-        }
-
-        //Writes trainer info to the file: trainer.txt
-        private void Save(){
-            StreamWriter outFile = new StreamWriter("trainers.txt");
-
-            for(int i = 0; i < Trainer.GetTrainerIDCount(); i++){   ///////ID <=
-                if(trainers[i].GetTrainerName().CompareTo("Deleted") != 0){
-                    outFile.WriteLine(trainers[i].ToFile());
-                }
-
-            }
-
-            outFile.Close();
-        }
-
-        //Sequential search to find the name of trainer in trainer.txt to edit
-        public int Search(string searchVal){
-            for(int i = 0; i< Trainer.GetTrainerIDCount(); i++){ /////////ID <=
-                if(trainers[i].GetTrainerName().ToUpper() == searchVal.ToUpper()){
-                    return i;
-                }
-            }
-            return -1;
-        }
-    }
-}
+*********************************************************************************************************************************

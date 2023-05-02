@@ -14,7 +14,7 @@ namespace mis_221_pa_5_szheng011
         }
 
         //Populates an array of trainers from file
-        public void GetAllTransactionsFromFile(Booking[] bookings){
+        public void GetAllTransactionsFromFile(Booking[] bookings, Listing[] listings){
             //open
             StreamReader inFile = new StreamReader("transactions.txt");
             //process
@@ -24,14 +24,23 @@ namespace mis_221_pa_5_szheng011
                 int tempID = int.Parse(temp[0]);
                 DateTime tempDateTime = DateTime.Parse(temp[4]);
                 int tempTrainerID = int.Parse(temp[5]);
+                double tempCostOfSession = double.Parse(temp[8]);
 
-                bookings[Booking.GetSessionIDCount()] = new Booking(tempID,temp[1],temp[2],temp[3],tempDateTime,tempTrainerID,temp[6],temp[7]);
+                bookings[Booking.GetSessionIDCount()] = new Booking(tempID,temp[1],temp[2],temp[3],tempDateTime,tempTrainerID,temp[6],temp[7],tempCostOfSession);
                 Booking.IncSessionCount();
                 Booking.SetSessionIDCount(tempID + 1);
                 input = inFile.ReadLine();
             }
             //close
             inFile.Close();
+
+            for(int i = 0; i < Booking.GetSessionCount();i++){
+                for(int j = 0; j<Listing.GetListingIDCount();j++){
+                    if((bookings[i].GetSessionStatus() == "Booked") && (listings[j].GetDateTime() == bookings[i].GetTrainingDate()) &&(listings[j].GetTrainerID() == bookings[i].GetTrainerID())){
+                        listings[j].SetListingToTaken();
+                    }
+                }
+            }
         }
 
         public void BookSession(){
@@ -50,9 +59,11 @@ namespace mis_221_pa_5_szheng011
                 System.Console.WriteLine("Please enter the email of the customer:");
                 newBooking.SetCustomerEmail(Console.ReadLine());
                 newBooking.SetTrainingDate(listings[SearchListingByID(tempListingID)].GetDateTime());
-                newBooking.SetTrainerID(trainers[SearchListingByID(tempListingID)].GetTrainerID());
-                newBooking.SetTrainerFirstName(trainers[SearchListingByID(tempListingID)].GetTrainerFirstName());
-                newBooking.SetTrainerLastName(trainers[SearchListingByID(tempListingID)].GetTrainerLastName());
+                newBooking.SetTrainerID(listings[SearchListingByID(tempListingID)].GetTrainerID());
+                newBooking.SetTrainerFirstName(listings[SearchListingByID(tempListingID)].GetTrainerFirstName());
+                newBooking.SetTrainerLastName(listings[SearchListingByID(tempListingID)].GetTrainerLastName());
+                newBooking.SetCostOfSession(listings[SearchListingByID(tempListingID)].GetCostOfSession());
+
 
             }
             else{
@@ -70,9 +81,11 @@ namespace mis_221_pa_5_szheng011
                         System.Console.WriteLine("Please enter the email of the customer:");
                         newBooking.SetCustomerEmail(Console.ReadLine());
                         newBooking.SetTrainingDate(listings[SearchListingByID(tempListingID)].GetDateTime());
-                        newBooking.SetTrainerID(trainers[SearchListingByID(tempListingID)].GetTrainerID());
-                        newBooking.SetTrainerFirstName(trainers[SearchListingByID(tempListingID)].GetTrainerFirstName());
-                        newBooking.SetTrainerLastName(trainers[SearchListingByID(tempListingID)].GetTrainerLastName());
+                        newBooking.SetTrainerID(listings[SearchListingByID(tempListingID)].GetTrainerID());
+                        newBooking.SetTrainerFirstName(listings[SearchListingByID(tempListingID)].GetTrainerFirstName());
+                        newBooking.SetTrainerLastName(listings[SearchListingByID(tempListingID)].GetTrainerLastName());
+                        newBooking.SetCostOfSession(listings[SearchListingByID(tempListingID)].GetCostOfSession());
+
                         isInvalidInt = false;
                     }
                 }  

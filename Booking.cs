@@ -12,7 +12,7 @@ namespace mis_221_pa_5_szheng011
         private int trainerID;
         private string trainerFirstName;
         private string trainerLastName;
-        
+        private double costOfSession;
         private string sessionStatus = "Booked";
         static private int sessionCount = 0;
         static private int sessionIDCount = 0;
@@ -22,7 +22,7 @@ namespace mis_221_pa_5_szheng011
 
         }
 
-        public Booking(int sessionID,string customerFirstName, string customerLastName, string customerEmail, DateTime trainingDate, int trainerID, string trainerFirstName, string trainerLastName){
+        public Booking(int sessionID,string customerFirstName, string customerLastName, string customerEmail, DateTime trainingDate, int trainerID, string trainerFirstName, string trainerLastName, double costOfSession){
             this.sessionID = sessionID;
             this.customerFirstName = customerFirstName;
             this.customerLastName = customerLastName;
@@ -31,6 +31,7 @@ namespace mis_221_pa_5_szheng011
             this.trainerID = trainerID;
             this.trainerFirstName = trainerFirstName;
             this.trainerLastName = trainerLastName;
+            this.costOfSession = costOfSession;
         }
 
         public void SetSessionID(int sessionID){
@@ -97,8 +98,19 @@ namespace mis_221_pa_5_szheng011
             return trainerLastName;
         }
 
+        public void SetCostOfSession(double costOfSession){
+            this.costOfSession = costOfSession;
+        }
+        public double GetCostOfSession(){
+            return costOfSession;
+        }
+
         public void SetSessionStatus(string sessionStatus){
             this.sessionStatus = sessionStatus;
+        }
+
+        public string GetSessionStatus(){
+            return sessionStatus;
         }
 
         static public void IncSessionCount(){
@@ -132,7 +144,7 @@ namespace mis_221_pa_5_szheng011
 
         public string ToFile()
         {
-            return $"{sessionID}#{customerFirstName}#{customerLastName}#{customerEmail}#{trainingDate}#{trainerID}#{trainerFirstName}#{trainerLastName}#{sessionStatus}";
+            return $"{sessionID}#{customerFirstName}#{customerLastName}#{customerEmail}#{trainingDate}#{trainerID}#{trainerFirstName}#{trainerLastName}#{costOfSession}#{sessionStatus}";
         }
     }
 }
